@@ -165,7 +165,7 @@ const FINDINGS=[
 ["high","F7 · Discount ladder inverted","20% for a review > 15% referral > 10% to acquire > $10 winback. One evergreen 10% code in ~20 emails per store kills urgency."],
 ["high","F8 · Emails are pictures, not emails","Median ~45 live words under 15 to 27 image slices; offers locked inside images. Text-based emails outperform image siblings everywhere."],
 ["med","F9 · Winback/Sunset is decorative","Sunset tags profiles with a tag no segment uses; Winback overlaps Sunset with contradictory messages. No real list hygiene."],
-["med","F10 · Bug list shipping at volume","US Tan-finder shows wrong products (index-0 bug); EU review stars all submit 4★; Replenishment CTAs → homepage."],
+["med","F10 · Bug list shipping at volume","US Tan-finder shows wrong products (index-0 bug); EU review stars all submit 4-star; Replenishment CTAs → homepage."],
 ["med","F11 · Loyalty/VIP layer unreachable","Business Class upgrade email: 13 deliveries/365d (broken splits); loyalty follow-ups sit as drafts inside live flows. Best audience, least attention."]];
 
 function repurchase(store){
@@ -206,13 +206,24 @@ function render(key){
 }
 const tabs=document.getElementById('tabs');
 STORES.forEach(([k,l])=>{const b=document.createElement('button');b.className='tab';b.dataset.k=k;b.textContent=l;b.onclick=()=>render(k);tabs.appendChild(b)});
-const eb=document.createElement('button');eb.className='tab';eb.id='editbtn';eb.style.marginLeft='auto';eb.textContent='\u270E Edit text';
+const eb=document.createElement('button');eb.className='tab';eb.id='editbtn';eb.style.marginLeft='auto';eb.textContent='Edit text';
 eb.title='Toggle on, click any text on the page and type. Switching store tabs rebuilds the page and discards edits, so pick your tab first.';
 eb.onclick=()=>{const v=document.getElementById('view');const on=v.getAttribute('contenteditable')==='true';
+ if(on){window._saved=window._saved||{};window._saved[window._curKey||'combined']=v.innerHTML;}
  [v,document.querySelector('h1'),document.querySelector('.sub'),document.querySelector('.foot')].forEach(el=>{if(el){el.setAttribute('contenteditable',on?'false':'true');el.setAttribute('spellcheck','false');}});
- eb.textContent=on?'\u270E Edit text':'\u2713 Done editing';eb.classList.toggle('on',!on);
+ eb.textContent=on?'Edit text':'Done editing';eb.classList.toggle('on',!on);
  v.style.outline=on?'':'2px dashed var(--pink)';v.style.outlineOffset=on?'':'6px';};
 tabs.appendChild(eb);
+const sb=document.createElement('button');sb.className='tab';sb.textContent='Save page';
+sb.title='Downloads this page with your edits baked in. Upload the file to GitHub (replace index.html) and the live link shows your edited version to everyone.';
+sb.onclick=()=>{
+ if(document.getElementById('view').getAttribute('contenteditable')==='true'){eb.onclick();}
+ let sv=JSON.stringify(window._saved||{}).replace(/<\//g,'<\\/');
+ let doc='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+ doc=doc.replace(/<script data-saved>[\s\S]*?<\/script>/g,'');
+ doc=doc.replace('</body></html>','<scr'+'ipt data-saved>window._saved='+sv+';if(typeof render==="function")render(window._curKey||"combined");</scr'+'ipt></body></html>');
+ const b=new Blob([doc],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index.html';a.click();};
+tabs.appendChild(sb);
 render('combined');
 </script>
 <script>
@@ -252,7 +263,7 @@ function startHere(store){
  <td><span class="badge ${x.verdict==="FLAG"?"b-red":"b-amber"}">${x.verdict}</span></td>
  <td style="font-size:12.5px;color:#3a3d37">${x.why}</td>
  </tr>`).join("");
- return `<h2 style="margin-top:26px">⚡ Start here · the 10 emails to act on first</h2>
+ return `<h2 style="margin-top:26px">Start here · the 10 emails to act on first</h2>
  <div class="note">Ranked by upside: for OPTIMIZE rows, "potential" = what this email would earn if it performed like the proven best email <i>in its own flow</i> (same audience, same brand · an internal benchmark, not a fantasy). FLAG rows cost more than they earn.</div>
  <table><tr><th>#</th><th>Store</th><th>Flow / email</th><th>Verdict</th><th>Why</th></tr>${rows}</table>`;
 }
@@ -280,7 +291,7 @@ function emailBlocks(s){
 }
 function repurchase(store){
  const keys=store==="combined"?["us","eu"]:[store];
- const OWN=["Post Purchase flow (currently the account's weakest · see ⚡ #1)","Loyalty + Replenishment flows","Loyalty / VIP layer (currently unreachable · F11)","VIP treatment (doesn't exist yet)","VIP treatment (doesn't exist yet)"];
+ const OWN=["Post Purchase flow (currently the account's weakest · see #1)","Loyalty + Replenishment flows","Loyalty / VIP layer (currently unreachable · F11)","VIP treatment (doesn't exist yet)","VIP treatment (doesn't exist yet)"];
  let cols=keys.map(k=>{
   const d=REPURCHASE[k];
   let lad=d.ladder.map((l,i)=>{
@@ -296,7 +307,7 @@ function repurchase(store){
   <div style="font-weight:700;font-size:13.5px;margin:16px 0 8px">Where they stop · buyers by lifetime order count</div>${dist}
   <div class="legend">Sample: ${d.sample.toLocaleString()} buyers (Klaviyo profile analytics, directional)</div></div>`}).join("");
  return `<h2>7 · Repeat purchase · where customers stop</h2>
- <div class="note">Top-down: of everyone with 1 order, how many EVER place a 2nd? Then of those, a 3rd, and so on. Orange = the leak (1→2). Each step is labelled with the flow responsible for it · that's how this chart connects to the email verdicts above: ~70% of customers stop after order 1, and the emails they receive between order 1 and 2 are the Post Purchase emails ranked ⚡ #1 to fix.</div>
+ <div class="note">Top-down: of everyone with 1 order, how many EVER place a 2nd? Then of those, a 3rd, and so on. Orange = the leak (1→2). Each step is labelled with the flow responsible for it · that's how this chart connects to the email verdicts above: ~70% of customers stop after order 1, and the emails they receive between order 1 and 2 are the Post Purchase emails ranked #1 to fix.</div>
  <div class="${keys.length>1?'split':''}" style="${keys.length>1?'grid-template-columns:1fr 1fr':''}">${cols}</div>`;
 }
 function render(key){
@@ -355,6 +366,7 @@ function render(key){
  window._curKey=key;
  document.querySelectorAll('.tab[data-k]').forEach(t=>t.classList.toggle('on',t.dataset.k===key));
  const v=document.getElementById('view');
+ if(window._saved&&window._saved[key]){v.innerHTML=window._saved[key];window.scrollTo(0,0);return;}
  if(key==='combined'){v.innerHTML=summary(DATA.combined,"combined")+startHere("combined")+flowLines("combined")+crossViz()+repurchase("combined")+findings();}
  else{const s=DATA.stores[key];v.innerHTML=summary(s,key)+startHere(key)+leaderboard(s)+flowLines(key)+emailBlocks(s)+repurchase(key)+findings();}
  window.scrollTo(0,0);

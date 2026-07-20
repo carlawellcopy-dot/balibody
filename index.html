@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bali Body · Flow Audit Dashboard v2</title>
+<title>Bali Body · Klaviyo Automations</title>
 <style>
 :root{--bg:#fcfbf8;--card:#fff;--ink:#1c1e1a;--mut:#6b6f66;--line:#e8e6df;--pink:#e77c8d;--pinkbg:#fdeef1;--orange:#e8963c;--green:#3f7d54;--greenbg:#eaf4ec;--red:#c04343;--redbg:#faeaea;--amber:#b07a1e;--amberbg:#faf3e3;--blue:#4a6f9e;--dead:#d8d5cb}
 *{box-sizing:border-box;margin:0}body{background:var(--bg);color:var(--ink);font:15px/1.55 Inter,-apple-system,"Segoe UI",Roboto,sans-serif;padding:28px 20px 80px}
@@ -60,7 +60,7 @@ svg text{font-family:inherit}
 .road ul{margin:8px 0 0 16px;font-size:13px;color:#3a3d37}
 .foot{margin-top:44px;color:var(--mut);font-size:12px;border-top:1px solid var(--line);padding-top:14px}
 </style></head><body><div class="wrap">
-<h1>Bali Body · Klaviyo Flow Audit <span class="badge b-pink">v2</span></h1>
+<h1>Bali Body · Klaviyo Automations</h1>
 <div class="sub">US + EU stores · email + SMS flows · data window: Klaviyo "last 365 days" = 21 Jul 2025 to 20 Jul 2026, pulled 20 Jul 2026 13:37 to 13:52 UTC · attribution: email 1-day open + 1-day click, SMS 1-day click (confirmed) · USD · fully offline</div>
 <div class="tabs" id="tabs"></div>
 <div id="view"></div>
@@ -363,4 +363,63 @@ const tt=document.createElement('div');tt.style.cssText='position:fixed;pointer-
 document.addEventListener('mouseover',e=>{const t=e.target.closest&&e.target.closest('[data-tip]');if(t){tt.textContent=t.getAttribute('data-tip');tt.style.opacity='1';}else tt.style.opacity='0';});
 document.addEventListener('mousemove',e=>{if(tt.style.opacity==='1'){const w=tt.offsetWidth;let lx=e.clientX+14;if(lx+w>window.innerWidth-8)lx=e.clientX-w-14;tt.style.left=lx+'px';tt.style.top=(e.clientY-34)+'px';}});
 render('combined');
+</script>
+<script>
+// ===== repurchase journey with touchpoints (overrides section 7) =====
+function tpRPR(storeKey,namePrefix){
+ const f=(DATA.stores[storeKey]?DATA.stores[storeKey].flows365:[]).find(x=>x.name.indexOf(namePrefix)===0);
+ return f?f.rpr:null;
+}
+function tpBadge(storeKey,namePrefix){
+ const r=tpRPR(storeKey,namePrefix);
+ if(r==null) return '<span class="badge" style="background:#f1efe8;color:var(--mut)">no data</span>';
+ const cls=r>=2?"b-green":(r<0.15?"b-red":"b-amber");
+ return `<span class="badge ${cls}">$${r.toFixed(2)}/person</span>`;
+}
+function repurchase(store){
+ const keys=store==="combined"?["us","eu"]:[store];
+ const TP=[
+  [["WC | Post Purchase Flow","fires day 1 to 23 after the order"],["WC | Replenishment Flow","fires around day 33"],["WC | Review Request Flow","fires day 14 to 60"],["WC | Winback Flow","safety net, day 90 to 120 if no repeat"]],
+  [["Yotpo L&R - Loyalty Welcome","only if they join the rewards program"],["WC | Post Purchase Flow","re-triggers after each order"]],
+  [["WC | Post Purchase Flow","same emails a third time"]],
+  [["(nothing dedicated)","no touchpoint exists for this stage · F11"]],
+  [["(nothing dedicated)","VIP treatment does not exist yet · F11"]]
+ ];
+ let cols=keys.map(k=>{
+  const d=REPURCHASE[k];
+  const worst=Math.min(...d.ladder.map(l=>l.pct));
+  let lad=d.ladder.map((l,i)=>{
+   const cls=l.pct>=45?"g":(l.pct<33?"o":"");
+   const lost=Math.round(l.base*(1-l.pct/100));
+   const tps=(TP[i]||[]).map(t=>{
+    const isFlow=t[0].indexOf("(")!==0;
+    return `<div style="display:flex;align-items:center;gap:6px;margin:2px 0;font-size:11px;color:#3a3d37">
+    <span style="color:var(--mut)">↳</span><span style="font-weight:600">${t[0]}</span>
+    ${isFlow?tpBadge(k,t[0]):''}<span style="color:var(--mut)">${t[1]}</span></div>`;}).join("");
+   return `<div style="padding:8px 0;border-bottom:1px dashed var(--line)">
+   <div class="hrow" style="grid-template-columns:64px 1fr 150px;padding:0">
+   <div style="font-weight:700">${l.step.replace(" to ","→")}</div>
+   <div class="htrack"><div class="hfill ${cls}" style="width:${Math.max(2,l.pct)}%"></div></div>
+   <div class="hval">${l.pct}% go on${l.pct===worst?' <span class="badge b-red">BIGGEST DROP</span>':''}</div></div>
+   <div style="font-size:10.5px;color:var(--red);padding-left:64px;margin-top:2px">${lost.toLocaleString()} of ${l.base.toLocaleString()} customers lost at this step</div>
+   <div style="padding-left:64px;margin-top:4px"><div style="font-size:10px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.04em">Touchpoints at this stage</div>${tps}</div></div>`}).join("");
+  let dist=d.dist.map(x=>`<div class="hrow" style="grid-template-columns:64px 1fr 60px"><div class="nm">${x.orders||x.o} order${(x.orders||x.o)==="1"?"":"s"}</div>
+   <div class="htrack"><div class="hfill" style="width:${Math.max(2,x.pct)}%;background:var(--blue)"></div></div><div class="hval">${x.pct}%</div></div>`).join("");
+  return `<div class="panel"><div style="font-weight:700;font-size:14px;margin-bottom:8px">${k.toUpperCase()} · repurchase journey</div>${lad}
+  <div style="font-weight:700;font-size:13.5px;margin:16px 0 8px">Buyer base by lifetime order count</div>${dist}
+  <div class="legend">Sample: ${d.sample.toLocaleString()} buyers (Klaviyo profile analytics, directional). Touchpoint badges show that flow's revenue per person entering it (green = strong, red = failing).</div></div>`}).join("");
+ return `<h2>7 · Repurchase journey · US and EU · rates, drop-offs, and the touchpoint at each step</h2>
+ <div class="note">Each step: the share of customers who ever place the next order, how many are lost, and exactly which flows are supposed to catch them at that moment · with each flow's actual earning power per person. The pattern to see: the biggest drop (order 1 to 2) is guarded almost entirely by flows earning under $0.15 per person, and from order 3 onward there is no dedicated touchpoint at all.</div>
+ <div class="${keys.length>1?'split':''}" style="${keys.length>1?'grid-template-columns:1fr 1fr':''}">${cols}</div>`;
+}
+render(window._curKey||'combined');
+</script>
+<script>
+// ===== remove findings, blank roadmap =====
+function findings(){
+ return `<h2>Roadmap</h2>
+ <div class="note">To be completed.</div>
+ <div class="panel" style="min-height:120px;color:var(--mut);font-size:13px">Use the Edit text button (top right) to write the roadmap here.</div>`;
+}
+render(window._curKey||'combined');
 </script></body></html>

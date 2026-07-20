@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bali Body · Pre-call Brand Brief (US + EU)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fcfbf8; --paper:#f4f5ef; --card:#ffffff; --card2:#f4f5ef;
+    --ink:#1c1e1a; --muted:#5f6560; --faint:#9aa093; --line:#e6e7df; --line2:#d9dbd0;
+    --accent:#5f7050; --sage:#5f7050; --sage-deep:#414f37; --sage-soft:#eaeee2;
+    --gold:#a8853a; --gold-soft:#f2e9d4;
+    --violet:#5f7050; --fuchsia:#9aa093; --amber:#a8853a; --cyan:#0d8a78; --rose:#b14a4a; --green:#3f7a4e; --slate:#5f6560;
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --shadow:0 1px 2px rgba(28,30,26,.04),0 14px 34px -22px rgba(28,30,26,.16); --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased}
+  a{color:var(--sage-deep);text-underline-offset:2px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+  .grad-text{color:var(--sage-deep);font-family:var(--serif);font-weight:500}
+  .toolbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:rgba(252,251,248,.88);border-bottom:1px solid var(--line)}
+  .toolbar .wrap{display:flex;align-items:center;gap:12px;height:56px}
+  .logo{display:flex;align-items:center;gap:9px;font-weight:600;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink)}
+  .logo .mark{width:16px;height:16px;border-radius:4px;background:var(--sage)}
+  .tspace{flex:1}
+  .savestate{font-size:11px;color:var(--faint);letter-spacing:.02em}
+  .btn{cursor:pointer;border:1px solid var(--line2);border-radius:8px;font-weight:600;font-size:12px;letter-spacing:.02em;padding:8px 13px;background:var(--card);color:var(--ink);transition:background .15s,border-color .15s,color .15s}
+  .btn:hover{border-color:var(--sage);color:var(--sage-deep)}
+  .btn.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .btn.on{background:var(--sage);color:#fff;border-color:var(--sage)}
+  .masthead{background:linear-gradient(180deg,var(--sage-soft),rgba(234,238,226,0));border-bottom:1px solid var(--line)}
+  .masthead .wrap{padding-top:46px;padding-bottom:38px}
+  .mh-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--sage-deep)}
+  .mh-eyebrow::after{content:"";flex:0 0 34px;height:1px;background:var(--gold)}
+  .mh-title{font-family:var(--serif);font-weight:500;font-size:clamp(32px,5vw,50px);line-height:1.04;letter-spacing:-.02em;margin:16px 0 0;max-width:16ch}
+  .mh-lede{color:var(--muted);font-size:16px;line-height:1.55;max-width:64ch;margin:16px 0 0}
+  .mh-row{display:flex;align-items:flex-start;gap:26px;flex-wrap:wrap;margin-top:26px}
+  .gradechip{display:flex;align-items:center;gap:14px;border:1px solid var(--line2);border-radius:16px;padding:14px 20px;background:var(--card);box-shadow:var(--shadow)}
+  .gradechip .g{font-family:var(--serif);font-size:34px;font-weight:500;line-height:.9;color:var(--sage-deep)}
+  .gradechip .gx .gl{font-size:9.5px;text-transform:uppercase;letter-spacing:.18em;color:var(--faint);display:block;margin-bottom:3px}
+  .gradechip .gx .gt{font-size:12.5px;color:var(--muted);max-width:32ch;line-height:1.4}
+  .mh-meta{display:flex;gap:26px;flex-wrap:wrap;align-self:center}
+  .mh-meta div{font-size:13px;color:var(--ink)}
+  .mh-meta b{display:block;font-size:9.5px;text-transform:uppercase;letter-spacing:.13em;color:var(--faint);font-weight:600;margin-bottom:3px}
+  .tabbar{position:sticky;top:56px;z-index:40;background:rgba(252,251,248,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .tabbar .wrap{display:flex;gap:4px;overflow-x:auto}
+  .tabbtn{flex:0 0 auto;cursor:pointer;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--muted);font-weight:500;font-size:12.5px;letter-spacing:.02em;padding:14px 14px;white-space:nowrap;transition:color .15s,border-color .15s}
+  .tabbtn:hover{color:var(--ink)}
+  .tabbtn.active{color:var(--sage-deep);font-weight:600;border-bottom-color:var(--gold)}
+  #doc{padding:8px 0 56px}
+  .panel{display:none;animation:fade .2s ease}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .panelhead{position:relative;margin:50px 0 20px;padding-top:22px;border-top:1px solid var(--line)}
+  .panelhead::before{content:"";position:absolute;top:-1px;left:0;width:40px;height:2px;background:var(--gold)}
+  .panelhead h2{margin:0;font-family:var(--serif);font-size:clamp(25px,3vw,33px);font-weight:500;letter-spacing:-.015em;line-height:1.12}
+  .eyebrow{display:block;font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--sage-deep);margin:0 0 9px}
+  .note{color:var(--muted);max-width:760px;margin:0 0 22px;font-size:15px;line-height:1.6}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .big{font-family:var(--serif);font-size:clamp(20px,2.6vw,27px);font-weight:500;letter-spacing:-.01em;line-height:1.25;margin:0 0 10px}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:680px){.cards{grid-template-columns:1fr}}
+  .mini{border:1px solid var(--line);border-radius:13px;padding:20px;background:var(--card);box-shadow:var(--shadow)}
+  .mini h4{margin:0 0 8px;font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .mini p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.6}
+  .tag{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;border:1px solid transparent}
+  .tag.hard{background:rgba(177,74,74,.08);color:var(--rose);border-color:rgba(177,74,74,.22)}
+  .tag.soft{background:rgba(168,133,58,.1);color:#8a6a1e;border-color:rgba(168,133,58,.24)}
+  .tag.ok{background:rgba(63,122,78,.09);color:var(--green);border-color:rgba(63,122,78,.22)}
+  .tag.na{background:rgba(95,101,96,.09);color:var(--slate);border-color:rgba(95,101,96,.22)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .tablewrap{border:1px solid var(--line);border-radius:13px;overflow:auto;margin-top:10px;box-shadow:var(--shadow)}
+  th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--paper);font-size:10.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);font-weight:600}
+  tr:last-child td{border-bottom:none}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  ul.clean{margin:8px 0 0;padding-left:18px}ul.clean li{margin:7px 0}
+  .callout{border-left:2px solid var(--gold);background:var(--gold-soft);padding:16px 20px;border-radius:0 12px 12px 0;font-size:14px;line-height:1.6;margin:18px 0}
+  .callout.v{border-left-color:var(--sage);background:var(--sage-soft)}
+  .fcards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:680px){.fcards{grid-template-columns:1fr}}
+  .fcard{border:1px solid var(--line);border-radius:13px;padding:22px;background:var(--card);box-shadow:var(--shadow)}
+  .fcard .n{font-family:var(--serif);font-size:28px;font-weight:500;letter-spacing:-.01em;color:var(--sage-deep)}
+  .fcard .l{color:var(--muted);font-size:12.5px;margin-top:8px;line-height:1.5}
+  .fcard.acc{border-top:2px solid var(--sage)}
+  .fcard.acc.gold{border-top-color:var(--gold)}
+  .swcols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  @media(max-width:680px){.swcols{grid-template-columns:1fr}}
+  .swcol{border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--bg)}
+  .swcol.strong{border-left:3px solid var(--sage)}
+  .swcol.weak{border-left:3px solid var(--gold)}
+  .swcol .cap{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin:0 0 11px}
+  .swcol.strong .cap{color:var(--sage-deep)}
+  .swcol.weak .cap{color:var(--gold)}
+  .swlist{list-style:none;margin:0;padding:0}
+  .swlist li{position:relative;padding-left:18px;margin:9px 0;font-size:13px;color:var(--muted);line-height:1.5}
+  .swlist li b{color:var(--ink);font-weight:600}
+  .swlist li::before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:2px}
+  .swcol.strong .swlist li::before{background:var(--sage)}
+  .swcol.weak .swlist li::before{background:var(--gold)}
+  .lcmap{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:8px 0 6px}
+  @media(max-width:760px){.lcmap{grid-template-columns:repeat(2,1fr)}}
+  .lcstep{border:1px solid var(--line);border-top:2px solid var(--sage);border-radius:10px;padding:12px;background:var(--bg)}
+  .lcstep .s{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold);font-weight:600}
+  .lcstep h5{margin:5px 0 5px;font-size:12.5px;font-weight:600}
+  .lcstep p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.45}
+  body.editing [data-edit]{outline:1px dashed rgba(95,112,80,.4);outline-offset:3px;border-radius:4px}
+  body.editing [data-edit]:focus{outline:1.5px solid var(--accent);background:rgba(95,112,80,.05)}
+  .editonly{display:none}
+  body.editing .editonly{display:inline-flex}
+  .rowdel{cursor:pointer;border:none;background:rgba(177,74,74,.12);color:var(--rose);border-radius:6px;font-weight:700;width:22px;height:22px;line-height:1;align-items:center;justify-content:center}
+  .edithint{display:none;margin:12px 0 0;font-size:12.5px;color:var(--accent)}
+  body.editing .edithint{display:block}
+  @media print{
+    .toolbar,.tabbar,.editonly,.edithint{display:none!important}
+    .panel{display:block!important;page-break-after:always;animation:none}
+    body{background:#fff}
+    .card,.mini,.fcard,.tablewrap{box-shadow:none}
+    .panelhead{border-color:#ddd}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar"><div class="wrap">
+  <div class="logo"><span class="mark"></span> WELL COPY</div>
+  <div class="tspace"></div>
+  <span class="savestate" id="saveState">Saved</span>
+  <button class="btn" id="editBtn" onclick="toggleEdit()">Edit</button>
+  <button class="btn" onclick="window.print()">Print / PDF</button>
+  <button class="btn" onclick="downloadHTML()">Download</button>
+  <button class="btn" onclick="resetDoc()">Reset</button>
+</div></div>
+
+<header class="masthead"><div class="wrap">
+  <div class="mh-eyebrow">Pre-call brand brief · US + EU stores</div>
+  <h1 class="mh-title">Bali Body</h1>
+  <p class="mh-lede">Everything to walk into the kickoff already fluent: who they are, what the site and catalogue reveal, how they price and discount across the US and EU stores, what competitors are doing, and, now that we have Klaviyo access, exactly how the email program is performing today. Storefront findings are drawn from us.balibodyco.com and eu.balibodyco.com; program numbers are live from the two Klaviyo accounts (last 12 months). Anything still modelled is flagged.</p>
+  <div class="mh-row">
+    <div class="gradechip"><span class="g">DTC</span><span class="gx"><span class="gl">Australian self tan and skincare</span><span class="gt">Self tan · suncare · BB Skin · Melbourne made · Shopify · Klaviyo</span></span></div>
+    <div class="mh-meta">
+      <div><b>Founders</b>Laura Foley &amp; David Oosterloo</div>
+      <div><b>Since</b>2014 · Melbourne</div>
+      <div><b>Catalogue</b>~65 core products</div>
+      <div><b>Klaviyo share</b>US 14.3% · EU 21.1% of revenue</div>
+      <div><b>Our scope</b>US + EU stores</div>
+    </div>
+  </div>
+</div></header>
+
+<div class="tabbar"><div class="wrap" id="tabbar"></div></div>
+
+<div class="wrap"><div id="doc">
+
+  <!-- BRAND -->
+  <section class="panel" data-tab="Brand">
+    <div class="panelhead"><span class="eyebrow">Who they are</span><h2 data-edit>The brand, in one read</h2></div>
+    <p class="note" data-edit>A category leader in affordable, skincare led self tan, born from a sensitive skin problem and scaled through social. Acquisition and trust are clearly solved. The opening for us sits in retention: turning a huge, proven, one time buyer base into a repeat and loyalty machine across two regions we run, the US and the EU.</p>
+    <div class="fcards">
+      <div class="fcard acc"><div class="n grad-text" data-edit>5,000+</div><div class="l" data-edit>Reviews on the self tanning mousse line alone. Social proof is not the bottleneck.</div></div>
+      <div class="fcard acc"><div class="n grad-text" data-edit>150+</div><div class="l" data-edit>Countries shipped to, across five regional storefronts. We oversee US and EU.</div></div>
+      <div class="fcard acc gold"><div class="n grad-text" data-edit>2014</div><div class="l" data-edit>Founded in Melbourne. Mature brand, still no subscription in the mix.</div></div>
+    </div>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>Founders &amp; origin</h4><p data-edit>Co-founded by Laura Foley and David Oosterloo in Melbourne. Laura lived with eczema and sensitive skin, and the pair saw few affordable suncare and tanning options for reactive skin. The first product was a tanning and body oil; the range grew from there. The sensitive skin origin is the emotional root of the "skin first" positioning.</p></div>
+      <div class="mini"><h4 data-edit>Positioning &amp; moat</h4><p data-edit>"A new philosophy on skin first self tanning" and "skincare infused self tan." They sit above mass drugstore tan (Bondi Sands, b.tan) on formulation and feel, and below prestige (St. Tropez) on price. Moat is brand love, a giant review base, Australian made credibility, and a very wide format range.</p></div>
+      <div class="mini"><h4 data-edit>Audience</h4><p data-edit>Primarily women who want a natural, streak free, sun kissed glow without UV damage, plus a suncare and skincare crossover buyer. Values cues on site: vegan, cruelty free, naturally derived, suitable for all skin types, Australian made. Aesthetic driven, results led, review reassured.</p></div>
+      <div class="mini"><h4 data-edit>Business model</h4><p data-edit>One time purchase DTC on Shopify, five regional stores (US, AU/NZ, CA, UK/International, EU), plus retail and marketplace presence (Ulta, Amazon). Consumable products with a natural reorder rhythm, but no subscribe and save is offered today. That gap is the headline retention opportunity.</p></div>
+      <div class="mini"><h4 data-edit>Programs already in place</h4><p data-edit>BB Air rewards (Yotpo powered, aviation tiers: Economy, Business, First Class, Private Jet), a Tan Finder quiz, a Notify Me back in stock capture, an Okendo reviews hub, and content in Guides &amp; Tips and the BB Blog. Klaviyo access confirms these already feed email: the Yotpo Loyalty Welcome and the Tan Finder flow are among the top earning flows, and Back In Stock is live. The lifecycle engine exists and is running.</p></div>
+      <div class="mini"><h4 data-edit>The tension</h4><p data-edit>A premium feeling, skincare led brand that leans on markdowns to convert (an always on EU Sale collection, around 22 products at capture and deeper at seasonal peaks, oils cut roughly 30 percent, value sets at a standing discount). The brand story and the discount behaviour pull against each other, and campaigns earn far less than flows, so the promo habit is not even paying off in broadcast. Room to retain with ritual and value, not just price.</p></div>
+    </div>
+    <div class="callout v" data-edit><b>Scope note.</b> Bali Body is Australian, but we oversee the US and EU stores only. Everything below is read through those two storefronts. The EU store is the more complex of the two: eleven display languages and a shared euro price across many countries. That makes localisation and region split sends a first order concern, not an afterthought.</div>
+  </section>
+
+  <!-- SITE & IA -->
+  <section class="panel" data-tab="Site &amp; IA">
+    <div class="panelhead"><span class="eyebrow">Architecture &amp; navigation</span><h2 data-edit>Site structure &amp; IA</h2></div>
+    <p class="note" data-edit>The information architecture is strong and conversion aware: shop by category, by shade, by format, by concern, with quiz and bundle paths layered in. The leaks are in lifecycle capture and in how the two regions are run, not in navigation.</p>
+    <div class="tablewrap"><table data-table="nav">
+      <thead><tr><th>Area</th><th>How it is structured</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Shop by category</td><td data-edit>New · Self Tan · Suncare · Best Sellers · Bundles · Accessories · Online Exclusives · Sale</td></tr>
+        <tr><td data-edit>Shop by shade</td><td data-edit>Light · Medium · Dark · Ultra Dark (plus Deep Violet colour base and Clear as formats)</td></tr>
+        <tr><td data-edit>Self tan by format</td><td data-edit>Mousse · Lotion · Serum · Mist · Aerosol · Gradual Tan · Face Tan · Instant / Wash Off · Clear</td></tr>
+        <tr><td data-edit>Suncare</td><td data-edit>Tanning Oils (SPF) · SPF50 Sunscreens · Face SPF · new Sheer Glow Sunscreen Gel SPF50</td></tr>
+        <tr><td data-edit>Conversion &amp; loyalty</td><td data-edit>Tan Finder quiz · Value Sets · BB Air Rewards · Notify Me back in stock · Reviews hub</td></tr>
+        <tr><td data-edit>Content &amp; trust</td><td data-edit>Guides &amp; Tips · The BB Blog · Impact &amp; Sustainability · Find In Store · FAQs</td></tr>
+      </tbody>
+    </table>
+    <button class="btn editonly" data-action="addrow" data-table="nav" style="margin-top:10px">+ Add row</button>
+    </div>
+    <h4 data-edit style="margin:24px 0 8px;font-size:14px">Why it works / where it leaks</h4>
+    <div class="swcols">
+      <div class="swcol strong"><span class="cap">Strong</span><ul class="swlist">
+        <li data-edit><b>Multiple shopping logics.</b> Shade, format, and concern paths mean any buyer intent has a route in.</li>
+        <li data-edit><b>Quiz as a front door.</b> The Tan Finder is a natural zero party data capture for shade, skin type, and goal.</li>
+        <li data-edit><b>Value ladder is visible.</b> Singles, value sets, and premium gift bundles are all merchandised clearly.</li>
+        <li data-edit><b>Trust everywhere.</b> Review counts in the thousands sit on hero cards; badges reinforce vegan and cruelty free.</li>
+        <li data-edit><b>BNPL lowers the barrier.</b> Afterpay and Sezzle on US, Klarna on EU, matched to each region.</li>
+      </ul></div>
+      <div class="swcol weak"><span class="cap">Where it leaks</span><ul class="swlist">
+        <li data-edit><b>No subscription.</b> A consumable range with no subscribe and save leaves repeat revenue on the table.</li>
+        <li data-edit><b>Notify Me is live but under monetised.</b> Back In Stock is an automated, revenue tracked flow, but it earns only about 2.8k US and 1.7k EU a year against frequent sold out heroes. Upside, not a gap.</li>
+        <li data-edit><b>Quiz feeds email, depth unclear.</b> The Tan Finder flow is live and a top earner (9.4k US, 27.5k EU), so the quiz does write to Klaviyo. Whether shade and skin type drive ongoing personalisation is the open question.</li>
+        <li data-edit><b>EU localisation risk.</b> Eleven site languages, but are the emails localised, or is the EU list sent one generic language?</li>
+        <li data-edit><b>Discount habit.</b> Standing markdowns train buyers to wait for a sale, which erodes full price demand.</li>
+      </ul></div>
+    </div>
+    <div class="callout" data-edit><b>Regions we run.</b> US: free shipping over 45 dollars, Afterpay and Sezzle. EU: free shipping over 35 euro, Klarna, and a language switcher covering English, Dutch, French, German, Italian, Spanish, Swedish, Norwegian, Finnish, Danish, and Hebrew. Send timing, offer thresholds, currency, and language all differ by region, so US and EU should be planned as two coordinated calendars, not one.</div>
+  </section>
+
+  <!-- UX & EXPERIENCE -->
+  <section class="panel" data-tab="UX &amp; Experience">
+    <div class="panelhead"><span class="eyebrow">The website experience, audited</span><h2 data-edit>UX &amp; experience</h2></div>
+    <p class="note" data-edit>A conversion focused read of how the site actually feels to use: findability, navigation, the product page, cart and checkout, mobile, speed, accessibility, and personalisation, across the US and EU stores. Assessed from the live storefronts. A few items are marked to verify on a live click through, since they load through apps or depend on Core Web Vitals we should measure in the account.</p>
+
+    <h4 data-edit style="margin:4px 0 10px;font-size:14px">Big wins they already have</h4>
+    <div class="fcards">
+      <div class="fcard acc"><div class="n grad-text" data-edit>Model PDP</div><div class="l" data-edit>Ten plus images, before and after, swatches, full ingredient list, "suited for," and a deep FAQ. Among the best in the category.</div></div>
+      <div class="fcard acc"><div class="n grad-text" data-edit>5,000+ reviews</div><div class="l" data-edit>Okendo reviews at scale with skin tone tags, verified badges, brand replies, sort and filter. A conversion engine.</div></div>
+      <div class="fcard acc gold"><div class="n grad-text" data-edit>Frictionless cart</div><div class="l" data-edit>Free shipping progress bar, standard vs express toggle, BNPL, and express wallets. Little stands between want and buy.</div></div>
+    </div>
+    <div class="callout v" data-edit><b>Read in one line.</b> This is a well built, conversion aware store. The experience is strong on the product page and in the cart. The upside sits in findability (search and shade selection), in turning the quiz and scarcity into personalised journeys, and in making sure the EU experience is genuinely localised, not just re-priced.</div>
+
+    <h4 data-edit style="margin:24px 0 8px;font-size:14px">Findings &amp; optimisations</h4>
+    <div class="legendrow" style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 6px">
+      <span><span class="tag ok">win</span> keep and leverage</span>
+      <span><span class="tag soft">quick win</span> fast to fix</span>
+      <span><span class="tag hard">bigger bet</span> higher effort, higher payoff</span>
+      <span><span class="tag na">verify</span> confirm live or in account</span>
+    </div>
+    <div class="tablewrap"><table data-table="ux">
+      <thead><tr><th>Area</th><th>What we found</th><th>Rating</th><th>How to optimise</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Search &amp; findability</td><td data-edit>Search is present with five canned suggested searches. No confirmed predictive autocomplete with product images or synonym handling in the page source.</td><td data-edit><span class="tag na">verify</span></td><td data-edit>Tune predictive search: thumbnails, best sellers, synonyms (fake tan to self tan), and occasion terms (wedding, holiday). Make sure a no results query still recovers to products.</td></tr>
+        <tr><td data-edit>Navigation &amp; IA</td><td data-edit>Strong. Shop by category, shade, and format, plus a visual mega menu and quiz and value set shortcuts.</td><td data-edit><span class="tag ok">win</span></td><td data-edit>Keep. Add a shop by concern or occasion path (beginner, wedding, holiday) to match how people actually think.</td></tr>
+        <tr><td data-edit>Collection filtering</td><td data-edit>Shade and format live as separate collections in the menu, good for discovery and SEO. On page filter and sort within a collection was not confirmed.</td><td data-edit><span class="tag na">verify</span></td><td data-edit>Confirm collection pages offer filter and sort by shade, format, price, and skin type. If missing on large collections, it is a fast conversion win.</td></tr>
+        <tr><td data-edit>Product page depth</td><td data-edit>Outstanding. Images, before and after, swatches, benefit bullets, full ingredients, "suited for," and a thorough FAQ.</td><td data-edit><span class="tag ok">win</span></td><td data-edit>This is the benchmark. Templatise it so every hero product matches this standard.</td></tr>
+        <tr><td data-edit>Shade selection</td><td data-edit>Shades open as separate product pages, not variants on one page, so switching reloads and each shade holds its own review count.</td><td data-edit><span class="tag hard">bigger bet</span></td><td data-edit>Unify shades into one product page with a variant switcher, or a selector that preserves scroll, and consolidate reviews across shades.</td></tr>
+        <tr><td data-edit>Reviews &amp; social proof</td><td data-edit>Okendo at huge scale with skin tone tags, verified badges, brand replies, sort and filter.</td><td data-edit><span class="tag ok">win</span></td><td data-edit>Surface skin tone filtering higher, and pull star ratings and review snippets into email, PDP, and winback.</td></tr>
+        <tr><td data-edit>Review credibility</td><td data-edit>Many reviews are disclosed as incentivised.</td><td data-edit><span class="tag soft">quick win</span></td><td data-edit>Add organic post purchase review requests so the base is not seen as pay to play, and highlight verified organic reviews.</td></tr>
+        <tr><td data-edit>Cart &amp; checkout</td><td data-edit>Strong. Free shipping progress bar, standard vs express toggle, BNPL, and express wallets.</td><td data-edit><span class="tag soft">quick win</span></td><td data-edit>Add a cart cross sell (the mitt, face tan) and show the loyalty points the order would earn to lift AOV and sign ups.</td></tr>
+        <tr><td data-edit>Quiz &amp; personalisation</td><td data-edit>The Tan Finder is a separate app page; its questions and data capture were not visible in the page source.</td><td data-edit><span class="tag hard">bigger bet</span></td><td data-edit>Confirm it captures shade, skin type, and goal, gates an email at results, and writes to the profile so we can personalise sends.</td></tr>
+        <tr><td data-edit>Scarcity &amp; stock</td><td data-edit>Sell through velocity tags and frequent sold out states; a "Worth the Wait" Notify Me capture is built in.</td><td data-edit><span class="tag soft">quick win</span></td><td data-edit>Automate back in stock as a revenue tracked flow, and test pre order or waitlist on hero restocks.</td></tr>
+        <tr><td data-edit>Mobile</td><td data-edit>Viewport allows pinch zoom (an accessibility positive) and the mega menu collapses cleanly.</td><td data-edit><span class="tag ok">win</span></td><td data-edit>Keep. Verify a sticky add to bag and comfortable tap targets on real devices.</td></tr>
+        <tr><td data-edit>Speed &amp; performance</td><td data-edit>Images are webp on the Shopify CDN; product pages load ten plus images.</td><td data-edit><span class="tag na">verify</span></td><td data-edit>Run Core Web Vitals live. Prioritise the main product image for LCP and lazy load the rest.</td></tr>
+        <tr><td data-edit>Accessibility</td><td data-edit>Skip to content link present and a published Accessibility Statement.</td><td data-edit><span class="tag ok">win</span></td><td data-edit>Good baseline. Audit colour contrast and image alt text on live for full compliance.</td></tr>
+        <tr><td data-edit>Regions (US + EU)</td><td data-edit>Clean geo routing with a switch prompt; EU offers eleven display languages.</td><td data-edit><span class="tag na">verify</span></td><td data-edit>Ensure the geo prompt remembers a choice and never blocks. Confirm EU pages and emails are truly localised, not just re-priced.</td></tr>
+      </tbody>
+    </table>
+    <button class="btn editonly" data-action="addrow" data-table="ux" style="margin-top:10px">+ Add row</button>
+    </div>
+
+    <h4 data-edit style="margin:24px 0 8px;font-size:14px">Where to start</h4>
+    <div class="swcols">
+      <div class="swcol strong"><span class="cap">Quick wins</span><ul class="swlist">
+        <li data-edit><b>Cart cross sell and points.</b> Add the mitt and face tan to the cart, and show loyalty points earned.</li>
+        <li data-edit><b>Back in stock flow.</b> Turn the existing Notify Me capture into an automated, tracked flow.</li>
+        <li data-edit><b>Predictive search tune up.</b> Thumbnails, synonyms, and occasion terms in the search box.</li>
+        <li data-edit><b>Organic review prompts.</b> Balance the incentivised base with genuine post purchase requests.</li>
+        <li data-edit><b>Collection filters.</b> If a large collection lacks filter and sort, add it.</li>
+      </ul></div>
+      <div class="swcol weak"><span class="cap">Bigger bets</span><ul class="swlist">
+        <li data-edit><b>Unify shade product pages.</b> One page, variant switcher, consolidated reviews.</li>
+        <li data-edit><b>Quiz to profile.</b> Write shade, skin type, and goal to the customer record for personalisation.</li>
+        <li data-edit><b>True EU localisation.</b> Language and market level pages and sends, not just currency.</li>
+        <li data-edit><b>Speed and LCP.</b> Optimise the product page image load and measure Core Web Vitals.</li>
+        <li data-edit><b>Subscribe to save on PDP.</b> Add a replenishment option where none exists today.</li>
+      </ul></div>
+    </div>
+    <div class="callout" data-edit><b>Verify live before the call if there is time.</b> A quick click through confirms search autocomplete quality, on page collection filters, the quiz questions and data capture, mobile sticky add to bag, and page speed. These are the few items we rated as verify rather than assert, because they load through apps or depend on numbers we should measure inside the account.</div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="panel" data-tab="Products">
+    <div class="panelhead"><span class="eyebrow">Catalogue</span><h2 data-edit>What they sell</h2></div>
+    <p class="note" data-edit>Roughly 65 core products per store (about 65 US, 60 EU), with shades and sizes already merchandised as separate products rather than variants. Self tan is the engine; suncare and BB Skin skincare are the crossover and cross sell layers. Prices below are US dollars unless noted; EU euro prices run slightly higher and include tax.</p>
+    <div class="tablewrap"><table data-table="cat">
+      <thead><tr><th>Category</th><th>Range &amp; role</th><th>Price band (US)</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Self tan (mousse, foam, express)</td><td data-edit>Core engine. Original, Ultra Dark, Deep Violet, Clear. 1 Hour Express is the speed play.</td><td class="num" data-edit>$32 to $36</td></tr>
+        <tr><td data-edit>Gradual tan</td><td data-edit>Viral Gradual Tanning Butter is a homepage hero. Lower commitment entry point.</td><td class="num" data-edit>$27 to $33</td></tr>
+        <tr><td data-edit>Face tan</td><td data-edit>Face Tan Milk and Face Tan Serum. Natural cross sell from body tan.</td><td class="num" data-edit>$24 to $25</td></tr>
+        <tr><td data-edit>Tanning oils (SPF)</td><td data-edit>Watermelon, Cacao, Pineapple. The original heritage product; huge review counts.</td><td class="num" data-edit>$24 to $27</td></tr>
+        <tr><td data-edit>Suncare / SPF50</td><td data-edit>Sunscreen oils and the new Sheer Glow Sunscreen Gel SPF50. Year round, seasonal push.</td><td class="num" data-edit>$27 to $31</td></tr>
+        <tr><td data-edit>BB Skin / skincare</td><td data-edit>Serums, creams, masks, Tinted Super Serum SPF30. The retention and routine layer.</td><td class="num" data-edit>$23 to $35</td></tr>
+        <tr><td data-edit>Cosmetics</td><td data-edit>BB Cream SPF15 (2,000 plus reviews), bronzing serum. Everyday wear crossover.</td><td class="num" data-edit>$31</td></tr>
+        <tr><td data-edit>Value sets (two step bundles)</td><td data-edit>Roughly 15 virtual sets pairing a tan with a prep or tool. Standing discount.</td><td class="num" data-edit>$32 to $48</td></tr>
+        <tr><td data-edit>Premium gift bundles</td><td data-edit>Express Bronzed, Ultra Dark Express Bronzed, Ultra Bronzed, Radiant Recipe, Last Minute Glow, The Serum Series. Gifting and AOV lift.</td><td class="num" data-edit>$63 to $72</td></tr>
+        <tr><td data-edit>Accessories</td><td data-edit>Mitts, minis, pouches, sleep mask. Attach items and BB Air reward gated pieces.</td><td class="num" data-edit>$9.95 to $22</td></tr>
+      </tbody>
+    </table>
+    <button class="btn editonly" data-action="addrow" data-table="cat" style="margin-top:10px">+ Add row</button>
+    </div>
+    <h4 data-edit style="margin:24px 0 8px;font-size:14px">Hero products to know before the call</h4>
+    <div class="tablewrap"><table data-table="hero">
+      <thead><tr><th>Product</th><th>Price (US)</th><th>Signal</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Self Tanning Mousse (Original / Ultra Dark / Deep Violet)</td><td class="num" data-edit>$32 to $35</td><td data-edit>5,000+ reviews on the line. The flagship.</td></tr>
+        <tr><td data-edit>1 Hour Express Self Tan (Clear / Deep Violet / Ultra Dark)</td><td class="num" data-edit>$33 to $36</td><td data-edit>800+ reviews. Speed and convenience angle.</td></tr>
+        <tr><td data-edit>Gradual Tanning Butter</td><td class="num" data-edit>$33</td><td data-edit>Homepage "viral bestseller." Beginner friendly.</td></tr>
+        <tr><td data-edit>Watermelon Tanning Oil SPF15</td><td class="num" data-edit>$24</td><td data-edit>2,100+ reviews. Heritage hero, gateway price.</td></tr>
+        <tr><td data-edit>BB Cream SPF15</td><td class="num" data-edit>$31</td><td data-edit>2,000+ reviews. Everyday crossover to cosmetics.</td></tr>
+        <tr><td data-edit>Face Tan Milk</td><td class="num" data-edit>$24</td><td data-edit>Trending module on both stores. Cross sell anchor.</td></tr>
+        <tr><td data-edit>Sheer Glow Sunscreen Gel SPF50</td><td class="num" data-edit>$31</td><td data-edit>Newest launch, mega menu feature. Suncare push.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout" data-edit><b>Merchandising tell.</b> Products carry sell through velocity tags (fast soldout vs slow soldout) and a manual cross sell tag map linking each hero to its natural partner. That backend is a ready made blueprint for automated cross sell and back in stock flows. A few heroes were genuinely sold out at capture (Gradual Tan and Pineapple Tanning Oil on US), so scarcity is real, not just decorative.</div>
+  </section>
+
+  <!-- PRICING & DEALS -->
+  <section class="panel" data-tab="Pricing &amp; deals">
+    <div class="panelhead"><span class="eyebrow">Price &amp; promo architecture</span><h2 data-edit>Pricing &amp; deals</h2></div>
+    <p class="note" data-edit>Accessible premium: most singles land in the mid 20s to mid 30s, with a clean three step value ladder. The watch item is discount reliance, which looks heavier on the EU store than the US at the time of capture.</p>
+    <div class="tablewrap"><table data-table="price">
+      <thead><tr><th>Tier</th><th>US</th><th>EU</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Single hero (mousse)</td><td class="num" data-edit>$32</td><td class="num" data-edit>€30.95</td><td data-edit>Core price point. EU includes tax.</td></tr>
+        <tr><td data-edit>Tanning oil</td><td class="num" data-edit>$24</td><td class="num" data-edit>€24.95 (cut to €17.47)</td><td data-edit>EU showed roughly 30 percent off at capture.</td></tr>
+        <tr><td data-edit>Value set (two step)</td><td class="num" data-edit>$38 to $48</td><td class="num" data-edit>€38 to €50</td><td data-edit>Standing discount vs buying separately.</td></tr>
+        <tr><td data-edit>Premium gift bundle</td><td class="num" data-edit>$63 to $72</td><td class="num" data-edit>similar</td><td data-edit>AOV and gifting lever.</td></tr>
+        <tr><td data-edit>Free shipping threshold</td><td class="num" data-edit>$45</td><td class="num" data-edit>€35</td><td data-edit>Natural AOV nudge in cart and email.</td></tr>
+        <tr><td data-edit>BNPL</td><td data-edit>Afterpay, Sezzle</td><td data-edit>Klarna</td><td data-edit>Reinforces accessible positioning.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="swcols" style="margin-top:16px">
+      <div class="swcol strong"><span class="cap">Healthy signals</span><ul class="swlist">
+        <li data-edit><b>Clear value ladder.</b> Single, set, bundle gives obvious upsell paths for email.</li>
+        <li data-edit><b>Bundles carry real savings</b> that can headline without a sitewide sale.</li>
+        <li data-edit><b>Shipping thresholds</b> sit just above a single item, a built in "add one more" nudge.</li>
+      </ul></div>
+      <div class="swcol weak"><span class="cap">Discount watch</span><ul class="swlist">
+        <li data-edit><b>Always on EU Sale collection</b> (around 22 products at capture, deeper at seasonal peaks) is a standing fixture, not an event.</li>
+        <li data-edit><b>Oils cut ~30 percent</b> on EU at capture, which anchors buyers low. Serums were mostly full price at capture.</li>
+        <li data-edit><b>Value sets always on discount</b> can blunt the impact of true promo moments.</li>
+      </ul></div>
+    </div>
+    <div class="callout" data-edit><b>Now grounded in data.</b> Campaigns (the main discount vehicle) earn only about a third of Klaviyo revenue in both regions, while flows carry the rest, so the promo habit is not even winning in broadcast. The retention play is not "more discounts" but shifting demand to full price through ritual, replenishment, and loyalty, then reserving discounts for genuine tentpoles. Confirm the full price vs promo split on the call to size it.</div>
+  </section>
+
+  <!-- PROGRAM (LIVE) -->
+  <section class="panel" data-tab="Program (live)">
+    <div class="panelhead"><span class="eyebrow">Live Klaviyo data · last 12 months</span><h2 data-edit>The program, measured</h2></div>
+    <p class="note" data-edit>This section is no longer inferred. With direct API access to both Klaviyo accounts we can see exactly what is live and what it earns. Headline: this is a mature, already built program on Klaviyo, run on separate US and EU accounts, with a full Well Copy flow suite live. The story is not "build the flows," it is "the flows exist and most of the money hides in a handful of them." Values in USD (both accounts report in USD).</p>
+
+    <div class="fcards">
+      <div class="fcard acc"><div class="n grad-text" data-edit>14.3%</div><div class="l" data-edit>US: Klaviyo attributed $604k of $4.24M store revenue (79.6k orders). Flows $408k, campaigns $196k.</div></div>
+      <div class="fcard acc"><div class="n grad-text" data-edit>21.1%</div><div class="l" data-edit>EU: Klaviyo attributed $684k of $3.24M store revenue (62.2k orders). Flows $479k, campaigns $204k.</div></div>
+      <div class="fcard acc gold"><div class="n grad-text" data-edit>~68 / 32</div><div class="l" data-edit>Flow to campaign revenue split in both regions. Flows carry the program; campaigns underperform.</div></div>
+    </div>
+    <div class="callout v" data-edit><b>Read in one line.</b> Both accounts sit below the mature beauty benchmark (roughly 25 to 35 percent of revenue from email and SMS). US has the most headroom at 14.3 percent. The lift will not come from net new flows, it comes from the mid and lower tier flows that are built but barely earning (replenishment, back in stock, cross sell, winback) and from campaigns that are leaving money on the table.</div>
+
+    <h4 data-edit style="margin:24px 0 10px;font-size:14px">Live flows and what they earn (12 months)</h4>
+    <div class="tablewrap"><table data-table="flowrev">
+      <thead><tr><th>Flow</th><th>US value</th><th>EU value</th><th>Read</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Welcome (WC | Welcome Flow)</td><td class="num" data-edit>$149,964</td><td class="num" data-edit>$126,512</td><td data-edit>The engine. Roughly a quarter of all flow revenue on its own in each region.</td></tr>
+        <tr><td data-edit>Yotpo Loyalty Welcome (BB Air)</td><td class="num" data-edit>$48,904</td><td class="num" data-edit>$52,921</td><td data-edit>Loyalty is already emailed and it is the #2 flow. BB Air is not the leak the old read assumed.</td></tr>
+        <tr><td data-edit>Tan Finder quiz flow</td><td class="num" data-edit>$9,376</td><td class="num" data-edit>$27,474</td><td data-edit>Quiz feeds email and converts, especially in EU. Zero party data is flowing, depth to be confirmed.</td></tr>
+        <tr><td data-edit>Abandoned Checkout</td><td class="num" data-edit>$13,451</td><td class="num" data-edit>$23,302</td><td data-edit>Solid recovery flow, live in both regions.</td></tr>
+        <tr><td data-edit>Abandoned Cart</td><td class="num" data-edit>$15,810</td><td class="num" data-edit>$15,118</td><td data-edit>Live and healthy.</td></tr>
+        <tr><td data-edit>Post Purchase</td><td class="num" data-edit>$9,835</td><td class="num" data-edit>$2,181</td><td data-edit>Underweight in EU. Cross sell and reorder headroom.</td></tr>
+        <tr><td data-edit>Browse / Site Abandon</td><td class="num" data-edit>$4,782</td><td class="num" data-edit>$8,213</td><td data-edit>Live. Fine, room to optimise.</td></tr>
+        <tr><td data-edit>Back In Stock</td><td class="num" data-edit>$2,833</td><td class="num" data-edit>$1,705</td><td data-edit>Live and revenue tracked, but small against frequent sellouts. Clear upside.</td></tr>
+        <tr><td data-edit>Replenishment</td><td class="num" data-edit>$1,983</td><td class="num" data-edit>$789</td><td data-edit>Built but barely earning. The consumable reorder opportunity is here, not greenfield.</td></tr>
+        <tr><td data-edit>Winback + Sunset</td><td class="num" data-edit>$2,164</td><td class="num" data-edit>$6,305</td><td data-edit>Live. Lapsed monetisation is thin, especially US.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" data-edit style="margin-top:14px">Program hygiene: 27 flows are live in US and 26 in EU, but each account holds 84 to 88 total flows, so there is heavy draft sprawl (duplicate seasonal builds like BFCM 2025 and Boxing Day, plus stray TEST flows) worth cleaning up. Campaigns show open rates in the mid to high 50s (Apple MPP inflated) and thin click through, which is why broadcast underperforms flows.</p>
+    <div class="callout" data-edit><b>Still to confirm on the call.</b> SMS revenue and platform (SMS flow clones exist but earn little today), the true full price vs promo split, and whether the EU account sends localised by language or one generic version. Those answers size the campaign and localisation opportunities.</div>
+  </section>
+
+  <!-- COMPETITORS -->
+  <section class="panel" data-tab="Competitors">
+    <div class="panelhead"><span class="eyebrow">The field</span><h2 data-edit>Competitors &amp; our angle</h2></div>
+    <p class="note" data-edit>Self tan is a crowded, promo heavy category across both US and EU. Bali Body competes on skincare led formulation, format breadth, and Australian made trust. Here is who they are up against and where we would position.</p>
+    <div class="tablewrap"><table data-table="comp">
+      <thead><tr><th>Brand</th><th>Positioning</th><th>Does well</th><th>Our angle vs them</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Coco &amp; Eve</td><td data-edit>Premium, viral "Bali" bronzing, content led</td><td data-edit>Bundles, influencer engine, delicious sensory story</td><td data-edit>Beat on price and format range; own the sensitive skin and daily ritual angle.</td></tr>
+        <tr><td data-edit>Bondi Sands</td><td data-edit>Aussie mass, affordable, huge retail footprint</td><td data-edit>Ubiquity, foam franchise, US drugstore reach</td><td data-edit>Position up: skincare infused, cleaner feel, DTC first with richer lifecycle.</td></tr>
+        <tr><td data-edit>Isle of Paradise</td><td data-edit>Skincare led, colour correcting, inclusive tone</td><td data-edit>Shade correcting drops, Sephora and Boots presence</td><td data-edit>Lean on the Tan Finder quiz and shade range to match their personalisation.</td></tr>
+        <tr><td data-edit>Loving Tan</td><td data-edit>Premium deep natural mousse and bronzer, cult US</td><td data-edit>Colour payoff, loyal repeat base</td><td data-edit>Compete with the value ladder and express formats; add loyalty depth.</td></tr>
+        <tr><td data-edit>b.tan</td><td data-edit>Gen Z, cheap, fast, edgy voice</td><td data-edit>Price, personality, TikTok velocity</td><td data-edit>Elevate: results, skin safety, and a grown up glow they cannot claim.</td></tr>
+        <tr><td data-edit>St. Tropez</td><td data-edit>Legacy prestige, strong in EU</td><td data-edit>Authority, pro reputation, salon heritage</td><td data-edit>Undercut on price while matching quality cues; win on modern brand love.</td></tr>
+      </tbody>
+    </table>
+    <button class="btn editonly" data-action="addrow" data-table="comp" style="margin-top:10px">+ Add row</button>
+    </div>
+    <div class="callout" data-edit><b>Whitespace.</b> Most rivals discount hard and under invest in retention. A skincare led brand with 5,000 review heroes and a loyalty program is well placed to win on ritual, replenishment, and status rather than price. That is the lane we would take.</div>
+  </section>
+
+  <!-- BENCHMARKS -->
+  <section class="panel" data-tab="Benchmarks">
+    <div class="panelhead"><span class="eyebrow">Category bars</span><h2 data-edit>Benchmarks to aim at</h2></div>
+    <p class="note" data-edit>Now we can set the bar against their real numbers, not just category directionals. Benchmarks are directional beauty and cosmetics; the Bali Body figures are live from Klaviyo, last 12 months.</p>
+    <div class="fcards">
+      <div class="fcard acc"><div class="n grad-text" data-edit>14% &rarr; 30%</div><div class="l" data-edit>US Klaviyo revenue share is 14.3% (EU 21.1%) against a 25 to 35% mature benchmark. The gap is the growth target.</div></div>
+      <div class="fcard acc"><div class="n grad-text" data-edit>68% flows</div><div class="l" data-edit>Flow share of Klaviyo revenue is healthy; the weakness is campaigns at ~32%, dragged by thin click through.</div></div>
+      <div class="fcard acc gold"><div class="n grad-text" data-edit>1 flow = 25%</div><div class="l" data-edit>Welcome alone is roughly a quarter of flow revenue in each region. Concentration risk and a sign mid tier flows are underbuilt.</div></div>
+    </div>
+    <div class="tablewrap"><table data-table="bench">
+      <thead><tr><th>Lever</th><th>Category bar (directional)</th><th>Why it matters here</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Welcome flow</td><td data-edit>Should convert a mid single digit percent of new subscribers</td><td data-edit>Live and dominant: $150k US, $127k EU. Strong, but carrying too much of the load alone.</td></tr>
+        <tr><td data-edit>Cart &amp; checkout abandon</td><td data-edit>Among the top revenue flows in beauty</td><td data-edit>Live in both: cart $16k US / $15k EU, checkout $13k US / $23k EU. Healthy, optimise sequencing.</td></tr>
+        <tr><td data-edit>Back in stock</td><td data-edit>High intent, high convert</td><td data-edit>Live but tiny ($2.8k US, $1.7k EU) against frequent sellouts. Underexploited, clear upside.</td></tr>
+        <tr><td data-edit>Replenishment / winback</td><td data-edit>Where consumable brands recover lost LTV</td><td data-edit>Built but barely earning (replenishment $2k US, $0.8k EU). Optimise and add subscribe to save.</td></tr>
+        <tr><td data-edit>Email + SMS revenue share</td><td data-edit>Mature programs run into 25 to 35% of total revenue</td><td data-edit>Measured: 14.3% US, 21.1% EU. SMS earns little today. The headroom is quantified.</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- OPPORTUNITIES -->
+  <section class="panel" data-tab="Opportunities">
+    <div class="panelhead"><span class="eyebrow">Where the money is</span><h2 data-edit>Opportunities we would own</h2></div>
+    <p class="note" data-edit>Reprioritised against the live data. The flows already exist, so the money is in the flows that under earn, in campaigns, in SMS, and in closing the US gap to EU. Ranked by likely revenue impact, each tied to a real number from their account.</p>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>1 · Fix campaigns <span class="tag hard">biggest lever</span></h4><p data-edit>Campaigns earn only ~32% of Klaviyo revenue with thin click through, despite carrying the discount load. Better segmentation, subject lines, and a considered promo calendar can lift the weakest part of the program in both regions.</p></div>
+      <div class="mini"><h4 data-edit>2 · Replenishment &amp; subscribe to save <span class="tag hard">big lever</span></h4><p data-edit>The replenishment flow is live but earns just $2k US and $0.8k EU. On a consumable range with no subscription, rebuilding replenishment on real fade and run out timing, plus a subscribe and save option, is the clearest LTV lift.</p></div>
+      <div class="mini"><h4 data-edit>3 · Close the US gap to EU <span class="tag soft">quantified</span></h4><p data-edit>US Klaviyo share is 14.3% vs EU 21.1% on a bigger store. Bringing US to EU levels alone is roughly a $300k a year swing. Start with the flows and campaigns that already outperform in EU.</p></div>
+      <div class="mini"><h4 data-edit>4 · Scale the mid tier flows <span class="tag soft">quick win</span></h4><p data-edit>Back in stock ($2.8k / $1.7k) and EU post purchase ($2.2k) are live but tiny against the traffic behind them. Sequencing, timing, and cross sell can multiply these without building anything new.</p></div>
+      <div class="mini"><h4 data-edit>5 · Activate SMS <span class="tag soft">channel</span></h4><p data-edit>SMS flow clones exist (welcome, cart, checkout, browse, winback) but earn almost nothing today. A properly built SMS channel, capped alongside email, is an untapped revenue line.</p></div>
+      <div class="mini"><h4 data-edit>6 · EU localisation <span class="tag soft">region</span></h4><p data-edit>Eleven site languages on the EU store. Confirm whether sends are localised or one generic version, then segment the EU list by market and language and localise at least the top clusters.</p></div>
+      <div class="mini"><h4 data-edit>7 · Deepen quiz &amp; loyalty personalisation <span class="tag ok">asset ready</span></h4><p data-edit>Tan Finder and BB Air already earn (quiz $9k US / $27k EU; loyalty welcome ~$50k each). Push shade, skin type, and tier further into welcome, cross sell, and campaigns to compound what already works.</p></div>
+      <div class="mini"><h4 data-edit>8 · Flow hygiene &amp; hemisphere calendar <span class="tag na">housekeeping</span></h4><p data-edit>Clean the 84 to 88 flow draft sprawl (duplicate BFCM and Boxing Day builds, TEST flows), then run US and EU as two coordinated calendars that exploit opposite summers for the new SPF50 and oils.</p></div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section class="panel" data-tab="Questions">
+    <div class="panelhead"><span class="eyebrow">Ask these</span><h2 data-edit>Questions for the kickoff</h2></div>
+    <p class="note" data-edit>Sharp, grounded questions that show we did the homework and get us the numbers we need to build. Grouped so the call flows.</p>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>Stack &amp; measurement</h4><p data-edit>What ESP and SMS platform do you run, and what share of total revenue is attributed to email and SMS today? Any attribution window we should match?</p></div>
+      <div class="mini"><h4 data-edit>Regions</h4><p data-edit>Are US and EU on separate lists and separate sends? Is EU email localised by language, or sent one generic version? Where does the AU home market sit for us, if at all?</p></div>
+      <div class="mini"><h4 data-edit>Retention &amp; repeat</h4><p data-edit>What is repeat purchase rate and time to second order? Have you tested subscribe and save or replenishment, and if not, what has held it back?</p></div>
+      <div class="mini"><h4 data-edit>Discounting</h4><p data-edit>How reliant is revenue on the Sale collection and standing set discounts? What is the full price versus promo split you are comfortable sharing?</p></div>
+      <div class="mini"><h4 data-edit>Zero party data</h4><p data-edit>Does the Tan Finder quiz write shade and skin type to the customer profile, and is that used in any send today?</p></div>
+      <div class="mini"><h4 data-edit>Flows &amp; scarcity</h4><p data-edit>Which flows are live now? Is Notify Me an automated back in stock flow, and is it revenue tracked?</p></div>
+      <div class="mini"><h4 data-edit>Loyalty</h4><p data-edit>How is BB Air performing, what is the points liability, and is it currently part of the email program?</p></div>
+      <div class="mini"><h4 data-edit>Goals &amp; guardrails</h4><p data-edit>What is the primary goal for the next two quarters, and are there brand guardrails on frequency, discounting, or claims we must respect?</p></div>
+    </div>
+  </section>
+
+  <!-- SHARPER QUESTIONS -->
+  <section class="panel" data-tab="Sharper Questions">
+    <div class="panelhead"><span class="eyebrow">The ones that make the room pause</span><h2 data-edit>Sharper questions</h2></div>
+    <p class="note" data-edit>The Questions tab gathers the facts we need. These are different: fewer, sharper, and built to show senior thinking and make them see their own business from a new angle. Pick two or three that fit the room. They are designed to open a conversation, not to be run as a checklist.</p>
+
+    <h4 data-edit style="margin:14px 0 8px;font-size:14px">Economics they may not be looking at</h4>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>If you switched off the Sale collection for thirty days, how much revenue actually disappears versus simply shifts to full price?</h4><p data-edit>Forces an honest read on discount dependence. Most brands assume the sale drives demand; often it just subsidises buyers who would have paid anyway.</p></div>
+      <div class="mini"><h4 data-edit>Is a customer who orders a second time worth two times a one time buyer to you, or ten times? Do you know?</h4><p data-edit>Tests whether they measure LTV at all. If the second order is where the margin lives, retention stops being a nice to have and becomes the growth plan.</p></div>
+      <div class="mini"><h4 data-edit>You built a consumable brand with no subscription. Was that a deliberate brand decision, an operational blocker, or just never the priority?</h4><p data-edit>The answer tells us exactly how to pitch replenishment and subscribe to save, and whether the barrier is belief, tech, or focus.</p></div>
+      <div class="mini"><h4 data-edit>You have grown huge since 2014 without a heavy lifecycle program. Why invest in retention now?</h4><p data-edit>Surfaces the real pressure behind the brief, whether rising acquisition costs, a plateau, or a margin squeeze. That is the goal we should actually be solving for.</p></div>
+    </div>
+
+    <h4 data-edit style="margin:22px 0 8px;font-size:14px">Tensions worth naming out loud</h4>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>Your brand says skin first, premium, ritual. Your calendar says sale. Which is the real Bali Body, and which do you want us to amplify?</h4><p data-edit>Names the core tension in the whole account. Their answer sets the strategic north star for every send we build.</p></div>
+      <div class="mini"><h4 data-edit>When a hero sells out, do you see lost revenue or captured demand? What happens to that Notify Me list right now?</h4><p data-edit>Reframes stockouts from a problem into an owned, high intent audience. Reveals whether scarcity is being monetised or wasted.</p></div>
+      <div class="mini"><h4 data-edit>Is your EU customer a different person than your US customer, or the same person in a different currency?</h4><p data-edit>Tests how deeply they understand region. It opens the localisation conversation and how differently we should speak to, say, Germany versus France versus the Nordics.</p></div>
+      <div class="mini"><h4 data-edit>You sell summer in two hemispheres. Is that a smoothing advantage you actively use, or does the business still breathe with one calendar?</h4><p data-edit>Most brands never exploit opposite seasons across US and EU. If they are not, that is a revenue evening lever hiding in plain sight.</p></div>
+    </div>
+
+    <h4 data-edit style="margin:22px 0 8px;font-size:14px">Assets they are sitting on</h4>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>The Tan Finder already knows a customer's shade, skin type, and goal before they buy. If I asked you to send an email using all three today, could you?</h4><p data-edit>Exposes the gap between data collected and data used. If the quiz does not write to the profile, personalisation is blind and that is a fast, visible win.</p></div>
+      <div class="mini"><h4 data-edit>You have thousands of reviews on a single product. Where does that customer voice show up outside the product page?</h4><p data-edit>A giant proof asset that rarely makes it into email, winback, or objection handling. Underused social proof is free conversion.</p></div>
+      <div class="mini"><h4 data-edit>What is the most valuable product to product journey you have, and are you actively engineering it, or just hoping for it?</h4><p data-edit>Moves cross sell from guesswork to a designed path. They already have a manual cross sell map in the backend; this asks whether anyone is driving it.</p></div>
+      <div class="mini"><h4 data-edit>If BB Air disappeared tomorrow, would your best customers actually notice, or is it just a discount on repeat buyers?</h4><p data-edit>A provocative loyalty audit. Separates a program that changes behaviour from one that quietly erodes margin.</p></div>
+    </div>
+
+    <h4 data-edit style="margin:22px 0 8px;font-size:14px">Aligning on the win</h4>
+    <div class="cards">
+      <div class="mini"><h4 data-edit>Twelve months from now, what has to be true for you to say hiring us was obviously the right call?</h4><p data-edit>Pins the definition of success to something concrete: a revenue number, a flow that did not exist, a metric they cannot move today. Everything we build points back here.</p></div>
+      <div class="mini"><h4 data-edit>What do you wish you knew about your customers that you do not collect today?</h4><p data-edit>Turns them into a partner in the plan and reveals the zero party data gaps we should start closing from day one.</p></div>
+    </div>
+
+    <div class="callout v" data-edit><b>How to use these.</b> Two or three, placed well, do more than a full list. Lead with a tension question to set the strategic frame, follow with an economics question to ground it in money, and close with the twelve month question to align on the outcome we will be judged on.</div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="panel" data-tab="Campaign pillars">
+    <div class="panelhead"><span class="eyebrow">What we would send</span><h2 data-edit>Campaign pillars</h2></div>
+    <p class="note" data-edit>A pillar mix that reduces discount dependence and leans on the assets they already have. Each pillar earns its place, and each can be localised per region.</p>
+    <div class="tablewrap"><table data-table="pillars">
+      <thead><tr><th>Pillar</th><th>What it does</th><th>Why it fits Bali Body</th></tr></thead>
+      <tbody>
+        <tr><td data-edit>Glow education &amp; ritual</td><td data-edit>Prep, apply, prolong, maintain</td><td data-edit>Non promo value that lowers returns and drives reorder. Content already exists.</td></tr>
+        <tr><td data-edit>Shade &amp; format match</td><td data-edit>Quiz led, personalised recommendations</td><td data-edit>Cuts wrong shade returns and cross sells formats using zero party data.</td></tr>
+        <tr><td data-edit>Replenishment &amp; reorder</td><td data-edit>Timed to tan fade and product run out</td><td data-edit>The core retention play for a consumable range with no subscription today.</td></tr>
+        <tr><td data-edit>Suncare &amp; seasonal SPF</td><td data-edit>Glow plus protection, year round</td><td data-edit>New SPF50 and oils, timed to opposite US and EU summers.</td></tr>
+        <tr><td data-edit>New &amp; back in stock</td><td data-edit>Launches and restock alerts</td><td data-edit>Leverages real scarcity and the existing Notify Me capture.</td></tr>
+        <tr><td data-edit>Loyalty &amp; VIP (BB Air)</td><td data-edit>Status, early access, points</td><td data-edit>Activates an underused program and rewards the best customers.</td></tr>
+        <tr><td data-edit>Social proof &amp; UGC</td><td data-edit>Reviews, before and after, creators</td><td data-edit>Thousands of reviews per hero make proof led sends easy and high converting.</td></tr>
+        <tr><td data-edit>Considered promo (tentpoles)</td><td data-edit>Bundles and value sets at key moments</td><td data-edit>Concentrates discounting into real events instead of an always on sale.</td></tr>
+      </tbody>
+    </table>
+    <button class="btn editonly" data-action="addrow" data-table="pillars" style="margin-top:10px">+ Add row</button>
+    </div>
+  </section>
+
+  <!-- CADENCE -->
+  <section class="panel" data-tab="Cadence">
+    <div class="panelhead"><span class="eyebrow">How often, when, and how governed</span><h2 data-edit>Cadence &amp; governance</h2></div>
+    <p class="note" data-edit>A starting cadence to propose, tuned by engagement tier and run as two coordinated regional calendars. Numbers are recommendations to refine once we see performance and deliverability.</p>
+    <div class="fcards">
+      <div class="fcard acc"><div class="n grad-text" data-edit>2 to 3x</div><div class="l" data-edit>Campaign emails per week to engaged segments, throttled down for lower tiers.</div></div>
+      <div class="fcard acc"><div class="n grad-text" data-edit>2 calendars</div><div class="l" data-edit>US and EU planned in parallel: separate timing, currency, offers, and language.</div></div>
+      <div class="fcard acc gold"><div class="n grad-text" data-edit>SMS</div><div class="l" data-edit>Reserved for launches, back in stock, and VIP, capped alongside email.</div></div>
+    </div>
+    <div class="cards" style="margin-top:4px">
+      <div class="mini"><h4 data-edit>Frequency by tier</h4><p data-edit>Highly engaged get the full cadence; moderate get the promo and tentpole beats; dormant get a light reengagement track before sunset. Protects deliverability while maximising reach.</p></div>
+      <div class="mini"><h4 data-edit>Send windows by region</h4><p data-edit>US and EU sit in different time zones and opposite seasons. Sends should be scheduled to each region and, for EU, ideally to major market clusters.</p></div>
+      <div class="mini"><h4 data-edit>Governance</h4><p data-edit>Suppression and sunset policy, a frequency cap across email and SMS combined, and a full price to promo ratio agreed with the brand so discounting stays intentional.</p></div>
+      <div class="mini"><h4 data-edit>Tentpole ramp</h4><p data-edit>Seasonal (both hemispheres), Black Friday and Cyber, holiday gift sets, and product launches run as tease, launch, and last chance beats rather than one off blasts.</p></div>
+    </div>
+  </section>
+
+  <!-- SEGMENTATION -->
+  <section class="panel" data-tab="Segmentation">
+    <div class="panelhead"><span class="eyebrow">How we would slice the base</span><h2 data-edit>Segmentation starting point</h2></div>
+    <p class="note" data-edit>We now have account access, and the base is already heavily segmented: 52 segments and 14 lists in US, 54 segments and 12 lists in EU. So this is less "build segmentation" and more "rationalise the sprawl and make sure every send is filtered by lifecycle, engagement, and value, with region and shade or format affinity layered on." The model below is the target state to organise toward.</p>
+    <div class="lcmap">
+      <div class="lcstep"><div class="s">Stage 1</div><h5 data-edit>Lead / pre purchase</h5><p data-edit>Quiz takers and subscribers who have not bought. Welcome and first order.</p></div>
+      <div class="lcstep"><div class="s">Stage 2</div><h5 data-edit>First time buyer</h5><p data-edit>Orders one and two, highest churn. Onboarding and reorder.</p></div>
+      <div class="lcstep"><div class="s">Stage 3</div><h5 data-edit>Established</h5><p data-edit>Repeat buyers. Cross sell into face tan, suncare, BB Skin.</p></div>
+      <div class="lcstep"><div class="s">Stage 4</div><h5 data-edit>VIP / high value</h5><p data-edit>Top spenders and BB Air members. Status and early access.</p></div>
+      <div class="lcstep"><div class="s">Stage 5</div><h5 data-edit>At risk</h5><p data-edit>Slipping past the reorder window. Replenishment and save.</p></div>
+      <div class="lcstep"><div class="s">Stage 6</div><h5 data-edit>Lapsed</h5><p data-edit>No order in the danger zone. Winback, then sunset.</p></div>
+    </div>
+    <h4 data-edit style="margin:22px 0 8px;font-size:14px">Overlay axes &amp; personas</h4>
+    <div class="swcols">
+      <div class="swcol strong"><span class="cap">Overlay axes</span><ul class="swlist">
+        <li data-edit><b>Engagement tier</b> for deliverability (30, 60, 90, 180 day windows).</li>
+        <li data-edit><b>Value tier</b> (RFM) once order data exists.</li>
+        <li data-edit><b>Region &amp; language</b> (US, EU by market) as a hard split.</li>
+        <li data-edit><b>Shade &amp; format affinity</b> from quiz and purchase (Ultra Dark, Clear, mousse, oil).</li>
+        <li data-edit><b>Category affinity</b> self tan vs suncare vs skincare, for timing.</li>
+      </ul></div>
+      <div class="swcol weak"><span class="cap">Personas to sketch</span><ul class="swlist">
+        <li data-edit><b>The glow ritualist</b> who tans on a routine. Replenishment lever.</li>
+        <li data-edit><b>The event tanner</b> who buys before occasions. Timing and express formats.</li>
+        <li data-edit><b>The suncare crossover</b> who came for oils or SPF. Cross sell to tan.</li>
+        <li data-edit><b>The deal hunter</b> who only buys on sale. Fragile; move toward value and loyalty.</li>
+        <li data-edit><b>The lapsed but winnable</b> past buyer. Winback with the right hero.</li>
+      </ul></div>
+    </div>
+    <div class="callout v" data-edit><b>Prioritise these with the access we have.</b> Audit and consolidate the 50 plus segments per account, then make sure welcome by capture source, first order onboarding, replenishment, back in stock, cross sell by category, VIP and BB Air, and a region and language split across the EU list are all cleanly targeted. Shade, skin type, and tier data are already flowing from the quiz and loyalty, so put them to work in personalisation now.</div>
+    <p class="edithint">Tip: press Edit in the toolbar to change any text, add or delete table rows, then Download to save a standalone copy or Print to PDF.</p>
+  </section>
+
+</div></div>
+
+<script>
+  const KEY = 'wc-brief::v1::' + ((location.pathname.split('/').pop()||'brief').replace(/\.html?$/,'') || 'brief');
+  const doc = document.getElementById('doc');
+  const ORIGINAL = doc.innerHTML;
+  let editing = false;
+
+  function buildTabs(){
+    const bar = document.getElementById('tabbar');
+    bar.innerHTML = '';
+    const panels = [...doc.querySelectorAll('.panel')];
+    panels.forEach(x=>x.classList.remove('active'));
+    panels.forEach((p,i)=>{
+      const b = document.createElement('button');
+      b.className = 'tabbtn' + (i===0?' active':'');
+      b.innerHTML = p.dataset.tab;
+      b.onclick = ()=>{
+        panels.forEach(x=>x.classList.remove('active'));
+        [...bar.children].forEach(x=>x.classList.remove('active'));
+        p.classList.add('active'); b.classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      };
+      bar.appendChild(b);
+    });
+    if(panels[0]) panels[0].classList.add('active');
+  }
+
+  function setEditable(on){
+    doc.querySelectorAll('[data-edit]').forEach(el=>{
+      if(on){ el.setAttribute('contenteditable','true'); }
+      else { el.removeAttribute('contenteditable'); }
+    });
+  }
+  function toggleEdit(){
+    editing = !editing;
+    document.body.classList.toggle('editing', editing);
+    setEditable(editing);
+    const btn = document.getElementById('editBtn');
+    btn.classList.toggle('on', editing);
+    btn.textContent = editing ? 'Done editing' : 'Edit';
+  }
+
+  let t;
+  function flagSaving(){ document.getElementById('saveState').textContent='Saving…'; }
+  function save(){
+    try{ localStorage.setItem(KEY, doc.innerHTML);
+      document.getElementById('saveState').textContent='Saved';
+    }catch(e){ document.getElementById('saveState').textContent='Save failed'; }
+  }
+  function scheduleSave(){ flagSaving(); clearTimeout(t); t=setTimeout(save,600); }
+  function restore(){
+    const s = localStorage.getItem(KEY);
+    if(s){ doc.innerHTML = s; }
+  }
+  function resetDoc(){
+    if(!confirm('Reset all edits back to the original brief? This clears your saved changes.')) return;
+    doc.innerHTML = ORIGINAL; localStorage.removeItem(KEY);
+    buildTabs(); if(editing) setEditable(true);
+    document.getElementById('saveState').textContent='Reset';
+  }
+
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('[data-action]'); if(!a) return;
+    const act = a.dataset.action;
+    if(act==='delrow'){
+      const row = a.closest('tr') || a.closest('.mini'); if(row){ row.remove(); scheduleSave(); }
+    } else if(act==='addrow'){
+      const tbl = doc.querySelector('table[data-table="'+a.dataset.table+'"] tbody');
+      if(tbl){ const last = tbl.rows[tbl.rows.length-1];
+        const nr = last ? last.cloneNode(true) : null;
+        if(nr){ nr.querySelectorAll('[data-edit]').forEach(c=>{ if(!c.querySelector('.tag')) c.textContent=''; });
+          tbl.appendChild(nr); if(editing) setEditable(true); scheduleSave(); }
+      }
+    }
+  });
+
+  doc.addEventListener('input', scheduleSave);
+
+  function downloadHTML(){
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelector('body').classList.remove('editing');
+    const ss = clone.querySelector('#saveState'); if(ss) ss.textContent='Saved';
+    clone.querySelectorAll('[contenteditable]').forEach(el=>el.removeAttribute('contenteditable'));
+    const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+    const blob = new Blob([html], {type:'text/html'});
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url; link.download = 'index.html';
+    link.click(); URL.revokeObjectURL(url);
+  }
+
+  restore();
+  setEditable(false);
+  buildTabs();
+</script>
+</body>
+</html>
